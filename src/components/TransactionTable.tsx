@@ -93,14 +93,6 @@ export const TransactionTable = (prop: Prop) => {
                   color="#000000"
                   fill="#000000"
                   cursor="pointer"
-                  // sx={{
-                  //   '&:hover': {
-                  //     bg: '#eff3f9a9',
-                  //   },
-                  // }}
-                  // onClick={() => {
-                  //   setSelectCustomerDetail(elem);
-                  // }}
                 >
                   {tableOrder.map((item) => {
                     return (
