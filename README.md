@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Chamsmobile
+
+This repository contains the Chamsmobile project, a simple banking application developed as part of the Kegow interview process. The application consists of both frontend and backend components, enabling users to perform various banking operations.
+
+## Task Description
+
+Following a successful interview, you've been invited to proceed to the second stage of the interview process. The task for this stage is to build a fullstack banking application using React for the frontend (preferably Next.js or Create React App with TypeScript) and TypeScript for the backend (using Express.js, Nest.js, etc.). Both the frontend and backend should be containerized using Docker.
+
+### Application Features
+
+The application should provide the following features:
+
+- Create a new user account.
+- Enable existing users to log in.
+- Facilitate money transfers between users with valid account numbers.
+- Display transaction history.
+- Show account balances.
+
+## Prerequisites
+
+Before you begin, ensure you have the following prerequisites installed:
+
+- Node.js: Download and install Node.js from [https://nodejs.org/](https://nodejs.org/).
+- PostgreSQL: Install PostgreSQL and create a database for Chamsmobile.
+- Docker: Install Docker for containerization.
 
 ## Getting Started
 
-First, run the development server:
+Follow these steps to set up and run the Chamsmobile project on your local machine.
+
+### Step 1: Install Dependencies
+
+In the project root directory, run the following command to install the required dependencies:
+
+```bash
+npm install
+```
+
+### Step 2: Configure Environment Variables
+
+Create a `.env` file in the project root directory and use the content of `.env.example` as a template. Replace the placeholders with your own values:
+
+```env
+CHAMSMOBILE_API="https://**.app/api"
+CHAMSMOBILE_ORG_KEY="e9e9e9297f023d4a915"
+JWT_SECRET="242424"
+
+DATABASE_URL="postgresql://postgres@dlocal:5432/postgres"
+```
+
+### Step 3: Run Prisma Migrations
+
+Run the Prisma migrations to set up the database schema:
+
+```bash
+npx prisma generate
+npx prisma migrate deploy
+```
+
+### Step 4: Seed the Database
+
+Seed the database with initial data (if needed):
+
+```bash
+npx prisma db seed
+```
+
+### Step 5: Start the Development Server
+
+Start the Chamsmobile development server by running the following command:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Your Next.js application should now be up and running at [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

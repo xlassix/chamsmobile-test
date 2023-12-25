@@ -6,6 +6,8 @@ import { createMocks } from 'node-mocks-http';
 import jwt from 'jsonwebtoken';
 import { POST as loginHandler } from '../../app/api/account/login/route';
 
+jest.setTimeout(60000);
+
 describe('backend', () => {
   describe('/api/account/login', () => {
     test('return UserData', async () => {

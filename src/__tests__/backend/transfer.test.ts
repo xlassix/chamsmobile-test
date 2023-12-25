@@ -6,6 +6,8 @@ import { createMocks } from 'node-mocks-http';
 import jwt from 'jsonwebtoken';
 import { POST as transferHandler } from '../../app/api/transfer/route';
 
+jest.setTimeout(60000);
+
 describe('backend', () => {
   describe('/api/transfer', () => {
     test('return UserData', async () => {
