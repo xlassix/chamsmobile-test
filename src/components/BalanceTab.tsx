@@ -8,7 +8,7 @@ type IProp = {
 export const WalletTabs = (props: IProp) => {
   return (
     <Box padding="1rem">
-      <Text px="2rem" fontSize="1.5rem" fontWeight="700">
+      <Text p="1.25rem 1rem" fontSize="1.75rem" fontWeight="700">
         Wallets
       </Text>
 
