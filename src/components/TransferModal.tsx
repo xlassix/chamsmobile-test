@@ -155,8 +155,11 @@ export const TransferModal = (props: IProp) => {
                               );
                             }}
                           >
-                            {props?.user?.wallets?.map((elem) => (
-                              <option value={elem.account_no}>
+                            {props?.user?.wallets?.map((elem, index) => (
+                              <option
+                                key={`gender-${index}`}
+                                value={elem.account_no}
+                              >
                                 {elem.account_no}
                               </option>
                             ))}

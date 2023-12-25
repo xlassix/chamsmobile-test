@@ -225,7 +225,7 @@ export default function Home() {
                     Login
                   </Button>
                   <Flex gap="0.5rem">
-                    <Text>Don't have an Account?</Text>
+                    <Text>Don&apos;t have an Account?</Text>
                     <Link href="\register" color="green.500">
                       Register here
                     </Link>
