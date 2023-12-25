@@ -2,9 +2,6 @@
 
 This repository contains the Chamsmobile project, a simple banking application developed as part of the Kegow interview process. The application consists of both frontend and backend components, enabling users to perform various banking operations.
 
-## Task Description
-
-Following a successful interview, you've been invited to proceed to the second stage of the interview process. The task for this stage is to build a fullstack banking application using React for the frontend (preferably Next.js or Create React App with TypeScript) and TypeScript for the backend (using Express.js, Nest.js, etc.). Both the frontend and backend should be containerized using Docker.
 
 ### Application Features
 
