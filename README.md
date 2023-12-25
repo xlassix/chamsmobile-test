@@ -1,6 +1,6 @@
 # Chamsmobile
 
-This repository contains the Chamsmobile project, a simple banking application developed as part of the Kegow interview process. The application consists of both frontend and backend components, enabling users to perform various banking operations.
+This repository contains the Chamsmobile project, a simple banking application. The application consists of both frontend and backend components, enabling users to perform various banking operations.
 
 
 ### Application Features
