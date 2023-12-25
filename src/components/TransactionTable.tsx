@@ -46,10 +46,10 @@ const tableOrder = [
 ];
 
 export const TransactionTable = (prop: Prop) => {
-  const [isLargerThan568] = useMediaQuery('(min-width: 568px)');
+  const [isLargerThan720] = useMediaQuery('(min-width: 720px)');
   return (
     <Box>
-      {isLargerThan568 ? (
+      {isLargerThan720 ? (
         <TableContainer
           padding="1rem"
           borderRadius="0.75rem"
@@ -130,7 +130,7 @@ export const TransactionTable = (prop: Prop) => {
         </TableContainer>
       ) : (
         <Flex flexDirection={'column'} alignItems="center">
-          {prop.transactions?.map((elem, ind) => (
+          {prop.transactions?.map((data, ind) => (
             <Box
               minH={'40'}
               border={'2px'}
@@ -150,7 +150,7 @@ export const TransactionTable = (prop: Prop) => {
                   padding="0.25rem"
                 >
                   <Text>Trasaction Ref:</Text>
-                  <Text>{elem.txRef}</Text>
+                  <Text>{data.txRef}</Text>
                 </Flex>
                 <Flex
                   justifyContent="space-between"
@@ -158,7 +158,7 @@ export const TransactionTable = (prop: Prop) => {
                   padding="0.25rem"
                 >
                   <Text>Beneficiary Account Name:</Text>
-                  <Text>{elem.beneficiary_account_name}</Text>
+                  <Text>{data.beneficiary_account_name}</Text>
                 </Flex>
                 <Flex
                   justifyContent="space-between"
@@ -166,15 +166,21 @@ export const TransactionTable = (prop: Prop) => {
                   // borderBottom="1px solid #EFF0F2"
                 >
                   <Text>Beneficiary Account Number:</Text>
-                  <Text>{elem.beneficiary_account_number}</Text>
+                  <Text>{data.beneficiary_account_number}</Text>
                 </Flex>
                 <Flex justifyContent="space-between" padding="0.25rem">
                   <Text>Amount:</Text>
-                  <Text>{elem.transferAmount}</Text>
+                  <Text>
+                    ₦
+                    {parseFloat(data.transferAmount)
+                      .toFixed(2)
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  </Text>
                 </Flex>
                 {/* <Flex justifyContent="space-between" padding="0.25rem">
                                         <Text>CreatedAt:</Text>
-                                        <Text>{elem.createdAt}</Text>
+                                        <Text>{data.createdAt}</Text>
                                     </Flex> */}
               </Stack>
             </Box>

@@ -25,7 +25,11 @@ export async function GET(req: Request) {
           walletID: id,
         },
         include: {
-          transactions: true,
+          transactions: {
+            orderBy: {
+              createdAt: 'desc',
+            },
+          },
         },
       }),
     ]);

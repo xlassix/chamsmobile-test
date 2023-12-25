@@ -62,7 +62,7 @@ interface ClientClassification {
 
 export interface ITransaction {
   txRef: string;
-  transferAmount: number;
+  transferAmount: string;
   receiverWalletNumber: string;
   beneficiary_account_number: string;
   beneficiary_account_name: string;

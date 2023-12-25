@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <MainPageLayout>
       <WalletTabs wallets={data?.user?.wallets ?? []} />
-      <Flex alignItems="flex-end">
+      <Flex alignItems="flex-end" pr="1.5rem">
         <Button ml="auto" onClick={() => setModal(true)}>
           Transfer
         </Button>
