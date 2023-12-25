@@ -1,95 +1,48 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client';
+
+import Image from 'next/image';
+import styles from './page.module.css';
+import React, { use, useState } from 'react';
+import { useStoreState } from 'easy-peasy';
+import { useRouter } from 'next/navigation';
+import { date } from 'yup';
+import { MainPageLayout } from '@/components/MainPageLayout';
+import { useDashboardData } from '@/shared/hooks';
+import { WalletTabs } from '@/components/BalanceTab';
+import { Button } from '@/components/FormComponents';
+import { Box, Flex } from '@chakra-ui/react';
+import { TransferModal } from '@/components/TransferModal';
+import { TransactionTable } from '@/components/TransactionTable';
 
 export default function Home() {
+  const [modal, setModal] = useState(false);
+  const router = useRouter();
+  const isAuthenticated = useStoreState(
+    (state: any) => state.user.isAuthenticated
+  );
+
+  const storeUserInfo = useStoreState((state: any) => state.user.data);
+
+  const { data, error, isLoading } = useDashboardData(storeUserInfo.walletID);
+  React.useLayoutEffect(() => {
+    if (!isAuthenticated) {
+      router.replace('/login');
+    }
+  }, []);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    <MainPageLayout>
+      <WalletTabs wallets={data?.user?.wallets ?? []} />
+      <Flex alignItems="flex-end">
+        <Button ml="auto" onClick={() => setModal(true)}>
+          Transfer
+        </Button>
+        <TransferModal status={modal} setStatus={setModal} user={data?.user} />
+      </Flex>
+      <TransactionTable
+        isLoading={isLoading}
+        transactions={data?.transactions ?? []}
+      />
+    </MainPageLayout>
+  );
 }
